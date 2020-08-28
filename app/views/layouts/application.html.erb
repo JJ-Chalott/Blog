@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+      <!--
+        para los mensajes de error de devise
+        -->
+       <% if notice %>
+        <p class="notice"><%= notice %></p>
+       <%end%>
+       <% if alert %>
+        <p class="alert"><%= alert %></p>
+      <%end%>
+      <!--
+        En este archivo esta la estructura que tendran todas las vistas en el proyecto(para cuestiones practicas solo 
+        cambia la parte de yield)
+        -->
+    <%= render "partials/nav" %>
+    <%= yield %>
+  </body>
+</html>

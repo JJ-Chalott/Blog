@@ -1,0 +1,19 @@
+<div class="large-container center-block">
+    <div class="card padding margin-top">
+        <h1><%=@article.title%></h1>
+
+        <div>
+            <!--Muestra el email del usuario que escribio el articulo-->
+            <p>Escrito por: <strong><%= @article.user.email %></strong></p>
+        </div>
+
+        <div>
+            <%= @article.content %>
+        </div>
+        
+        <div class="card padding margin-top">
+            <!--link_to "eliminar el articulo", article_path(:id@article.id)-->
+            <%=link_to "eliminar el articulo", @article, method: :delete %>
+        </div>
+    </div>
+</div>

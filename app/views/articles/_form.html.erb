@@ -1,0 +1,18 @@
+<%= form_with(model: @article, local: true) do |form| %>
+<!--, local: true (es para que no se mande el formulario a AJAX)-->
+<div class="field">
+    <%=form.label :title, "Titulo" %>
+    <%=form.text_field :title %>
+</div>
+
+<div class="field">
+    <%=form.label :content, "Contenido" %>
+    <%=form.rich_text_area :content %>
+</div>
+
+<div>
+    <br />
+    <%= form.submit value="Crear Articulo" %>
+</div>
+
+<%end%>

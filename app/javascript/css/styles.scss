@@ -1,0 +1,55 @@
+@import '~bootstrap/scss/bootstrap';
+
+.alert{
+    background-color: yellow;
+    font-weight: bold
+}
+
+.notice{
+    background-color:aqua;
+    font-weight: bold
+}
+
+.small-container{
+    width:100%; 
+    max-width: 650px;
+} 
+
+.large-container{
+    width:100%;
+    max-width:960px;
+} 
+
+.center-block{
+    margin:0 auto
+} 
+
+.padding{
+    padding:10px 15px;
+} 
+
+.margin-top{
+    margin-top:1.5em;
+}
+
+.field{ 
+    @extend .margin-top;
+    label{
+        @extend .text-uppercase;
+        @extend .text-secondary;
+    } 
+    &:first-of-type{
+        margin-yop:0;
+    } 
+    
+    input{
+        @extend .form-control;
+        @extend .bg-light;
+    } 
+    input[type='checkbox']{
+        display: inline-block;
+        width:auto;
+        vertical-align:middle;
+        margin-right:0.5em;
+    }
+}
