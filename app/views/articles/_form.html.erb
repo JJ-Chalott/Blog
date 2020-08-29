@@ -1,18 +1,39 @@
 <%= form_with(model: @article, local: true) do |form| %>
-<!--, local: true (es para que no se mande el formulario a AJAX)-->
-<div class="field">
-    <%=form.label :title, "Titulo" %>
-    <%=form.text_field :title %>
-</div>
+    <!--, local: true (es para que no se mande el formulario a AJAX)-->
 
-<div class="field">
-    <%=form.label :content, "Contenido" %>
-    <%=form.rich_text_area :content %>
-</div>
+    <div class="field">
+        <%=form.label :title, "Titulo" %>
+        <%=form.text_field :title %>
+    </div>
 
-<div>
-    <br />
-    <%= form.submit value="Crear Articulo" %>
-</div>
+    <div class="field">
+        <%=form.label :category_elements, "Categoria(s)" %>
+        <div class="row">
+            <% @categories.each do |category| %>
+                <label class="col-6 col-sm-4">
+                    <%= form.check_box :category_elements, {multiple: true}, category.id, nil %>
+                    <%= category.title %>
+                </label>
+            <% end %>
+        </div>
+    </div>
+
+    <!--El div anterior...
+    class="row" para que todos loscheckbox esten uno al lado del otro
+    al checkbox le pasamos :category_elementes para se guarden ahi
+    {multipe:true} para permitir seleccionar mas de uno(al hacer esto ya no mandara un string mandara un arreglo)
+    category.id es lo que pasaran los checkbox que esten seleccionados
+    nil para que esten desmarcados por default
+    -->
+
+    <div class="field">
+        <%=form.label :content, "Contenido" %>
+        <%=form.rich_text_area :content %>
+    </div>
+
+    <div>
+        <br />
+        <%= form.submit value="Guardar Articulo" %>
+    </div>
 
 <%end%>

@@ -1,0 +1,20 @@
+<div class="small-container center-block">
+    <div class="card padding margin-top">
+        
+        <h1>Categoria</h1>
+        
+        <p>
+          <strong>Titulo:</strong>
+          <%= @category.title %>
+        </p>
+
+        <p>
+          <strong>Color:</strong>
+          <%= @category.color %>
+        </p>
+
+        <%= link_to 'Editar', edit_category_path(@category) %>
+        <br/>
+        <%= link_to 'Volver', categories_path %>
+    </div>
+</div>

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users #para los usuarios, lo crea devise
     
+    resources :categories
+    
     resources :articles do 
         #Arquitectura RES que genera automaticamente todas las routas comentadas
         #dentro del bloque do(opcional) se ponen las rutas que son diferentes a la arquitectura RES

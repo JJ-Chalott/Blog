@@ -13,7 +13,11 @@
         
         <div class="card padding margin-top">
             <!--link_to "eliminar el articulo", article_path(:id@article.id)-->
-            <%=link_to "eliminar el articulo", @article, method: :delete %>
+            <%=link_to "Editar articulo", edit_article_path %>
+            
+            <br/>
+            <%=link_to "Eliminar el articulo", @article, method: :delete, data: { confirm: '¿Estas seguro que deseas eliminar este articulo' } %>
+            
         </div>
     </div>
 </div>

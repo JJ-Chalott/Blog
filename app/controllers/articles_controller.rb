@@ -15,6 +15,7 @@ class ArticlesController < ApplicationController
         #crea una nuevo ariculo
         #@ se puede acceder a la variable desde la vista
         @article = Article.new
+        @categories = Category.all  #devuelve todas las categorias(para mostrar en checkbox)
     end
     
     def create
@@ -32,6 +33,7 @@ class ArticlesController < ApplicationController
         
         #con strongparams----------------------------------------------------------------------
         @article = current_user.articles.create(article_params) #recive todos los parametros de arriba title,content etc
+        @article.save_categories
         #--------------------------------------------------------------------------------------
         
         #render json: @article#para mostrar la variable sin crear la vista(solo de prueba)
@@ -41,6 +43,7 @@ class ArticlesController < ApplicationController
     def edit
         #edita el articulo que tenga el mismo id de la url
         #@article = Article.find(params[:id])
+        @categories = Category.all  #devuelve todas las categorias(para mostrar en checkbox)
     end
     
     def update
@@ -52,6 +55,7 @@ class ArticlesController < ApplicationController
         
         #con strongparams----------------------------------------------------------------------
         @article.update(article_params) #recive todos los parametros de arriba title,content etc
+        @article.save_categories
         #--------------------------------------------------------------------------------------
         
         
@@ -74,7 +78,7 @@ class ArticlesController < ApplicationController
     end
     
     def article_params  #[nombre del modelo] params //
-        params.require(:article).permit(:title, :content)
+        params.require(:article).permit(:title, :content, category_elements: [])
         #le decimos que obligatoriamente tenga un parametro :article(por que lo usaremos en create y update) y que solo permita el :title y el :content, ignorara cualquier otro
     end
 end
