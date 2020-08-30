@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users #para los usuarios, lo crea devise
+    devise_for :users #para los usuarios, lo crea devise
     
     resources :categories
     
@@ -24,7 +24,10 @@ Rails.application.routes.draw do
     #tambien 
     #primer diagonal opcional
     get "/bienvenido", to: "home#index"
+    get "perfil", to: "users#edit"
     #------------------------------------------------------------------------------------------------
+    
+    resources :users, only: [:update] #le decimos a REST creame solo la ruta update para users
     
     #Index-------------------------------------------------------------------------------------------
     #get "articles", to: "articles#index"

@@ -17,7 +17,7 @@
             <% @categories.each do |category| %>
               <tr>
                 <td><%= category.title %></td>
-                <td><%= category.color %></td>
+                    <td height="5" width="10" bgcolor="<%= category.color %>"></td>
                     <td>
                         <div class="card padding margin-top">
                         <%= link_to 'Ver', category %>

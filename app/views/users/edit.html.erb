@@ -1,0 +1,16 @@
+<div class="small-container center-block">
+    <div class="card padding margin-top">
+        <h1>Editar perfil</h1>
+        <%= image_tag url_for(current_user.avatar), height: 200 , width: 200 %>
+        <%= form_with(model: current_user, local: true) do |form| %>
+            <div class="field">
+                <%= form.label :avatar, "Imagen" %>
+                <%= form.file_field :avatar %>
+            </div>
+        
+            <div class="field">
+                <%= form.submit "Guardar", class:"btn btn-primary" %>
+            </div>
+        <% end %>
+    </div>
+</div>

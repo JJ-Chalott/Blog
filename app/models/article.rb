@@ -7,8 +7,8 @@ class Article < ApplicationRecord
     #belongs va en la tabla modificada
     #user en singular
     
-    has_many :categoryarticles
-    has_many :categories, through: :categoryarticles
+    has_many :category_articles
+    has_many :categories, through: :category_articles
     #relacion uno a muchos un articulo puede pertenecer a muchas categorias y una categoria puede ser parte de muchos articulos
     
     #se crea la tabla intermediaria CategoryArticle y se establece la relacion :categoryarticles en plural
@@ -20,6 +20,10 @@ class Article < ApplicationRecord
     #define una propiedad que se puede leer y escribir la llamaremos :category_elements
     
     def save_categories #metodo para registrar en la tabla intermedia muchos a muchos
+        
+        return category_articles.destroy_all if category_elements.nil? || category_elements.empty?
+            category_articles.where.not(category_id: category_elements).destroy_all
+        
         #si no viene como arreglo------------------------------------------------------------------
         #recibiremos del form las categorias 1,2,3
         #convertirlo en un arreglo separado por comas
