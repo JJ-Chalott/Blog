@@ -7,7 +7,7 @@ class Article < ApplicationRecord
     #belongs va en la tabla modificada
     #user en singular
     
-    has_many :category_articles
+    has_many :category_articles, dependent: :destroy
     has_many :categories, through: :category_articles
     #relacion uno a muchos un articulo puede pertenecer a muchas categorias y una categoria puede ser parte de muchos articulos
     

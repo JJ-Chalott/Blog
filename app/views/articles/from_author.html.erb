@@ -1,8 +1,13 @@
 <div class="large-container center-block">
+<% if current_user == @user %>
+    <h1>Mis articulos publicados</h1>
+<% else %>
+    <h1>Articulos publicados por <%= @user.email %></h1> <!--muestra los articulos de cierto usuario @user, no debe ser current_user porque ese somos nosotros-->
+<% end %>
 
-<h1>Articulos publicados por <%= @user.email %></h1> <!--muestra los articulos de cierto usuario @user, no debe ser current_user porque ese somos nosotros-->
-
-
+<% if @user.avatar.attached? %>
+    <%= image_tag url_for(@user.avatar), height: 200 , width: 200 %>
+<% end %>
 
 <!--
 le pasamos el nombre de la coleccion, es decir el nombre del arreglo de objetos, en este caso es @articles 

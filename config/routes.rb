@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :articles do 
         #Arquitectura RES que genera automaticamente todas las routas comentadas
         #dentro del bloque do(opcional) se ponen las rutas que son diferentes a la arquitectura RES
-        get "user/:user_id", to: "articles#from_author", on: :collection    #on: :collection es para mostrar una colleccion(el contrario es on: :member)
+        get "user/:user_id", to: "articles#from_author", on: :collection, as: :articles_from_author    #on: :collection es para mostrar una colleccion(el contrario es on: :member)
     end
     
     #get- mostar
@@ -16,14 +16,16 @@ Rails.application.routes.draw do
     #get "articles/user/:user_id", to: "articles#from_author"
     
     #ROOT-----------------------------------------------------------------------------------------------------------
-    root to: "home#index"
+    root to: "articles#index"
     #-----------------------------------------------------------------------------------------------------------
     
     #HOME-----------------------------------------------------------------------------------------------------------
     #get "[direccion que toma]", to: "[controlador]#[accion de ese controlador]"
     #tambien 
     #primer diagonal opcional
-    get "/bienvenido", to: "home#index"
+    
+    #get "/bienvenido", to: "home#index"
+    #get "/bienvenido", to: "articles#index"
     get "perfil", to: "users#edit"
     #------------------------------------------------------------------------------------------------
     

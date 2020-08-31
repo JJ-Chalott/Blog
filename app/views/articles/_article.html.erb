@@ -1,5 +1,21 @@
 <div class="card padding margin-top">
     <h3 class="text-uppercase"><%= article.title %></h3>
     <p class="text-secondary"><%= article.created_at%></p>
-    <%= link_to "Ver mas", article %>
+    
+    <div>
+        <p>Escrito por: <strong><%= link_to article.user.email, articles_from_author_articles_path(article.user.id) %></strong></p>
+        <% if article.user.avatar.attached? %>
+            <%= image_tag url_for(article.user.avatar), height: 40, width: 25 %>
+        <% end %>
+    </div>
+    
+    <div class="margin-top">
+        <p class="label">Categorias</p>
+        <% article.categories.each do |category| %>
+            <span class="badge badge-pill padding" style="background-color:<%=category.color%>">
+                <%= link_to category.title, category, class:"text-while" %>
+            </span>
+        <% end %>
+    </div>
+    <%= link_to "Ver articulo completo", article %>
 </div>

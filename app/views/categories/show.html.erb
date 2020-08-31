@@ -1,6 +1,11 @@
 <div class="large-container center-block">
     <div class="card padding margin-top">
         <h1>Articulos publicados en <%= @category.title %></h1>
-        <%=render @category.articles%>
+        <% if @category.articles.empty? %>
+        <br/>
+            <p class="text-secondary">De momento no hay ningun articulo en esta categoria</p>    
+        <% else %>
+            <%=render @category.articles%>
+        <% end %>
     </div>
 </div>

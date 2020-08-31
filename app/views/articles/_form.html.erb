@@ -9,12 +9,26 @@
     <div class="field">
         <%=form.label :category_elements, "Categoria(s)" %>
         <div class="row">
-            <% @categories.each do |category| %>
+
+            <% @categories.each do |allcategory| %>
                 <label class="col-6 col-sm-4">
-                    <%= form.check_box :category_elements, {multiple: true}, category.id, nil %>
-                    <%= category.title %>
+                    
+                    <% @checked = false %>
+                    
+                    <% @article.categories.each do |articlecategory| %>
+                        
+                        <% if allcategory.id == articlecategory.id %>
+                            <% @checked = true %>
+                        <% end %>
+                    
+                    <% end %>
+                    
+                    <%= form.check_box :category_elements, {multiple: true, checked:@checked}, allcategory.id, nil%>
+                    
+                    <%= allcategory.title %>
                 </label>
             <% end %>
+            
         </div>
     </div>
 
@@ -23,7 +37,9 @@
     al checkbox le pasamos :category_elementes para se guarden ahi
     {multipe:true} para permitir seleccionar mas de uno(al hacer esto ya no mandara un string mandara un arreglo)
     category.id es lo que pasaran los checkbox que esten seleccionados
-    nil para que esten desmarcados por default
+    {checked:true} para que este marcado por default
+    allcategory.id es lo que manda cuando esta marcado
+    nil es lo que manda cuando esta desmarcado
     -->
 
     <div class="field">

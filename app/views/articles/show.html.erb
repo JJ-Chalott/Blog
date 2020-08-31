@@ -4,8 +4,10 @@
 
         <div>
             <!--Muestra el email del usuario que escribio el articulo-->
-            <p>Escrito por: <strong><%= @article.user.email %></strong></p>
-            <%= image_tag url_for(current_user.avatar), height: 100 %>
+            <p>Escrito por: <strong><%= link_to @article.user.email, articles_from_author_articles_path(@article.user.id) %></strong></p>
+            <% if @article.user.avatar.attached? %>
+                <%= image_tag url_for(@article.user.avatar), height: 100 %>
+            <% end %>
         </div>
 
         <div>
@@ -21,13 +23,15 @@
             <% end %>
         </div>
         
-        <div class="card padding margin-top">
-            <!--link_to "eliminar el articulo", article_path(:id@article.id)-->
-            <%=link_to "Editar articulo", edit_article_path %>
-            
-            <br/>
-            <%=link_to "Eliminar el articulo", @article, method: :delete, data: { confirm: '¿Estas seguro que deseas eliminar este articulo' } %>
-            
-        </div>
+        <% if current_user == @article.user%>
+            <div class="card padding margin-top">
+                <!--link_to "eliminar el articulo", article_path(:id@article.id)-->
+                <%=link_to "Editar articulo", edit_article_path %>
+                
+                <br/>
+                <%=link_to "Eliminar el articulo", @article, method: :delete, data: { confirm: '¿Estas seguro que deseas eliminar este articulo' } %>
+                
+            </div>
+        <% end %>
     </div>
 </div>

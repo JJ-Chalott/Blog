@@ -1,6 +1,8 @@
 class ArticlesController < ApplicationController
-    before_action :find_article, except: [:new,:create,:index,:from_author]
+    #before_action :find_article, except: [:new,:create,:index,:from_author]
+    before_action :find_article, only: [:show, :edit, :update, :destroy, :article_params, :propietary]
     before_action :authenticate_user!, only: [:new,:create,:edit,:update,:destroy] #solo los que inicien sesion pueden hacer esto
+    before_action :propietary, only: [:edit, :update, :destroy]
     
     def index
         @articles = Article.all
@@ -75,6 +77,12 @@ class ArticlesController < ApplicationController
     def from_author
         @user = User.find(params[:user_id])#muestra los articulos del usuario con el id tal
         #:user_id debe ser igual al que se encuentra en routes
+    end
+
+    def propietary
+        unless current_user == @article.user
+            redirect_to articles_path
+        end
     end
     
     def article_params  #[nombre del modelo] params //
